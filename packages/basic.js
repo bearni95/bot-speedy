@@ -143,37 +143,46 @@ intents.push({
 })*/
 
 intents.push({
-    slug : 'nlp',
-    entities : ['*'],
+    slug : 'basic-interaction',
+    entities : ['hi', 'hey', 'hello', 'how', 'are', 'howdy'],
+
     reply : {
-        action : function (intent){
-            console.log(intent)
-            var entities = brain.parse_sentence(intent.message)
+        action : function(intent){
             var replies = intent.reply.params;
-            var mood = false //bad mood
-
-            console.log(entities);
-
-            var reply = replies[0];
-
-            reply = reply.replace('$nouns', JSON.stringify(entities.nouns))
-            reply = reply.replace('$verbs', JSON.stringify(entities.verbs))
-            reply = reply.replace('$adjectives', JSON.stringify(entities.adjectives))
-            reply = reply.replace('$topics', JSON.stringify(entities.topics))
+            var reply_id = Math.floor(Math.random() * (replies.length)) ;
 
             chat.send({
                 from : 'bot',
                 to : 'user',
-                content : reply
+                content : replies[reply_id],
             })
         },
-        params : ['Nouns:$nouns <br> Verbs:$verbs <br> Adjectives:$adjectives <br> Topics:$topics']
+        params : ['SPD13 at your service', 'You can call me Speedy'],
     },
 })
 
 intents.push({
-    slug : 'googler',
-    entities : ['*'],
+    slug : 'goodbye',
+    entities : ['bye', 'see you', 'good bye', 'goodbye'],
+    reply : {
+        action : function(intent){
+            var replies = intent.reply.params;
+            var reply_id = Math.floor(Math.random() * (replies.length)) ;
+
+            chat.send({
+                from : 'bot',
+                to : 'user',
+                content : replies[reply_id],
+            })
+        },
+        params : ['Suck a dick, dumbshit', 'It\'s been nice, be back soon :)'],
+    },
+})
+
+
+intents.push({
+    slug : 'nlp',
+    entities : ['---'],
     reply : {
         action : function (intent){
             console.log(intent)
@@ -199,3 +208,4 @@ intents.push({
         params : ['Nouns:$nouns <br> Verbs:$verbs <br> Adjectives:$adjectives <br> Topics:$topics']
     },
 })
+

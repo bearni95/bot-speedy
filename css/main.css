@@ -74,7 +74,7 @@ body{
 .chat-title{
 	height: 50px;
 	background-color: #cacaca;
-	color: #333;
+	color: #6a6571;
 	width: calc(100% - 20px);
 	border-radius: 5px 5px 0px 0px;
 	z-index: 50031;
@@ -96,4 +96,8 @@ body{
 	.chat-title, .chat-text{
 		border-radius:0px;
 	}
+}
+
+#sandbox{
+	display:none;
 }
